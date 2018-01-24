@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-public class VirtualAdsManager : MonoBehaviour
+public class MockAdsManager : MonoBehaviour
 {
-    public static VirtualAdsManager Instance { get; private set; }
+    public static MockAdsManager Instance { get; private set; }
     
     public static event Action<string> InterstitialAdClosedEvent = delegate { };
     public static event Action<string> VideolAdClosedEvent = delegate { };
