@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
 
-public class MockAdsManager : MonoBehaviour
+public class VirtualAdsManager : MonoBehaviour
 {
-    public static MockAdsManager Instance { get; private set; }
+    public static VirtualAdsManager Instance { get; private set; }
     
-    public static event Action<string> InterstitialAdClosedEvent = delegate { };
-    public static event Action<string> VideolAdClosedEvent = delegate { };
+    public event Action<string> InterstitialAdClosedEvent = delegate { };
+    public event Action<string> VideolAdClosedEvent = delegate { };
 
-    public GameObject bannerAd;
+    public BannerUIManager bannerAd;
     public InterstitialUIManager interstitialAd;
     public VideoUIManager videoAd;
 
@@ -26,31 +26,33 @@ public class MockAdsManager : MonoBehaviour
 
     public void ShowBannerAd()
     {
-        bannerAd.gameObject.SetActive(true);
+        bannerAd.Show();
     }
     
     public void HideBannerAd()
     {
-        bannerAd.gameObject.SetActive(false);
+        bannerAd.Hide();
     }
 
     public void ShowInterstitialAd()
     {
-        interstitialAd.gameObject.SetActive(true);
+        interstitialAd.Show();
     }
 
     public void OnInterstitialAdClosedEvent(string status)
     {
+        interstitialAd.Hide();
         InterstitialAdClosedEvent(status);
     }
     
     public void ShowVideoAd()
     {
-        videoAd.gameObject.SetActive(true);
+        videoAd.Show();
     }
     
     public void OnVideoAdClosedEvent(string status)
     {
+        videoAd.Hide();
         VideolAdClosedEvent(status);
     }
 }
